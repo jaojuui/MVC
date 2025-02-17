@@ -26,13 +26,13 @@ const PUBLIC_ROUTES = ['/', '/login'];
 if (in_array(strtolower($_SERVER['REQUEST_URI']), PUBLIC_ROUTES)) {
     dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
     exit;
-} elseif (isset($_SESSION['timestamp']) && time() - $_SESSION['timestamp'] < 10) {
+} elseif (isset($_SESSION['timestamp'])) {
     // 10 Sec.
     $unix_timestamp = time();
     $_SESSION['timestamp'] = $unix_timestamp;
     dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 } else {
     unset($_SESSION['timestamp']);
-    header('Location: /');
+    header('Location: /login');
     exit;
 }

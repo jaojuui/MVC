@@ -1,7 +1,7 @@
-<p>
-             &copy; <?= date('Y') ?>. All rights reserved by Aj.M.
-         </p>
-         </footer>
-         </body>
+<!-- Footer -->
+<div class="footer">
+        &copy; 2025. All rights reserved by Aj.M.
+    </div>
 
-         </html>
+</body>
+</html>

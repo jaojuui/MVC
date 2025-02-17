@@ -51,6 +51,27 @@ function getStudentById(int $id): mysqli_result|bool
     $result = $stmt->get_result();
     return $result;
 }
+function getStudentByEmail(string $email): mysqli_result|bool
+{
+    $conn = getConnection();
+    $sql = 'select * from students where email = ?';
+    $stmt = $conn->prepare($sql);    
+    $stmt->bind_param('s', $email);
+    $stmt->execute();    
+    $result = $stmt->get_result();
+    return $result;
+}
+function getStudentByResult(mysqli_result $result, string $column): string
+{
+    if ($result->num_rows > 0) {
+        $result->data_seek(0); // รีเซ็ตตัวชี้กลับไปที่แถวแรก
+        $student = $result->fetch_assoc();
+        return $student[$column] ?? "";
+    }
+    return "";
+}
+
+
 function changePassword(int $id, string $password): bool
 {
     $conn = getConnection();

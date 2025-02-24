@@ -45,7 +45,7 @@
 
 .footer {
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     background-color: rgb(157, 200, 79);
     color: white;
     border-radius: 0 0 10px 10px;

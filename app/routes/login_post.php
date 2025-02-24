@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 getConnection();
 $email = $_POST['email'] ?? '';
+$password =$_POST['password'] ?? '';
 $_SESSION['email'] = $email;
 
 $result = getStudentByEmail($email);
@@ -13,11 +14,23 @@ if ($result && $result->num_rows > 0) {
     // echo "Email: " . $student['email']; // ใช้ค่าที่ได้จากฐานข้อมูล
     // echo "id: " . $student['student_id']; // ใช้ค่าที่ได้จากฐานข้อมูล
     $id= $student['student_id']; // ใช้ค่าที่ได้จากฐานข้อมูล
-    $_SESSION['id'] = $id;
+    $hash=$student['password'];
+    if(password_verify($password,$hash)){
+        $_SESSION['id'] = $id;
+        $unix_timestamp = time();
+        $_SESSION['timestamp'] = $unix_timestamp;
+        
+        header('Location: /');
+    
+    }else{
+        echo "<script>alert('รหัสผ่านไม่ถูกต้อง'); window.location.href = '/login';</script>";
+        header('Location: /login');
+    }
 } else {
+    echo "<script>alert('ไม่พบข้อมูลนักเรียน'); window.location.href = '/login';</script>";
     // echo "ไม่พบข้อมูลนักเรียน";
-
 }
+
 
 // if ($result && $result->num_rows > 0) {
 //     while ($student = $result->fetch_assoc()) {
@@ -29,7 +42,3 @@ if ($result && $result->num_rows > 0) {
 //     echo "ไม่พบข้อมูลนักเรียน";
 // }
 // Assume that login success
-$unix_timestamp = time();
-$_SESSION['timestamp'] = $unix_timestamp;
-
-header('Location: /');

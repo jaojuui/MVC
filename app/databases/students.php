@@ -91,3 +91,27 @@ function changePassword(int $id, string $password): bool
     }
     return $result;
 }
+function hash_pws(){
+    $conn = getConnection();
+    $sql = "SELECT student_id FROM students ORDER BY student_id ASC";
+    $result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $counter = 1;
+    while ($row = $result->fetch_assoc()) {
+        $student_id = $row['student_id'];
+        $plain_password = str_repeat((string)$counter, 4); // สร้างรหัส 1111, 2222, 3333 ...
+        $hashed_password = password_hash($plain_password, PASSWORD_BCRYPT); // แฮชรหัสผ่าน
+
+        // อัปเดตรหัสผ่านในฐานข้อมูล
+        $update_sql = "UPDATE students SET password='$hashed_password' WHERE student_id=$student_id";
+        $conn->query($update_sql);
+
+        $counter++;
+    }
+    echo "Password updated successfully!";
+} else {
+    echo "No students found!";
+}
+
+}

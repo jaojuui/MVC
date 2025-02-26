@@ -40,7 +40,7 @@
 }
 
 .container {
-    flex: 1; /* ดัน footer ลงไปด้านล่าง */
+    flex: 1; 
 }
 
 .footer {
@@ -60,7 +60,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">ระบบลงทะเบียนเรียน</a>
+            <a class="navbar-brand" href="/">ระบบลงทะเบียนเรียน</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>

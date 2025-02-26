@@ -64,7 +64,7 @@ function getStudentByEmail(string $email): mysqli_result|bool
 function getStudentByResult(mysqli_result $result, string $column): string
 {
     if ($result->num_rows > 0) {
-        $result->data_seek(0); // รีเซ็ตตัวชี้กลับไปที่แถวแรก
+        $result->data_seek(0); 
         $student = $result->fetch_assoc();
         return $student[$column] ?? "";
     }
@@ -100,10 +100,9 @@ if ($result->num_rows > 0) {
     $counter = 1;
     while ($row = $result->fetch_assoc()) {
         $student_id = $row['student_id'];
-        $plain_password = str_repeat((string)$counter, 4); // สร้างรหัส 1111, 2222, 3333 ...
-        $hashed_password = password_hash($plain_password, PASSWORD_BCRYPT); // แฮชรหัสผ่าน
+        $plain_password = str_repeat((string)$counter, 4);
+        $hashed_password = password_hash($plain_password, PASSWORD_BCRYPT); 
 
-        // อัปเดตรหัสผ่านในฐานข้อมูล
         $update_sql = "UPDATE students SET password='$hashed_password' WHERE student_id=$student_id";
         $conn->query($update_sql);
 

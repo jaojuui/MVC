@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// renderView('information_get');
 
 getConnection();
 $result_student = getStudentById($_SESSION['id']);

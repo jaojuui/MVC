@@ -47,25 +47,22 @@
         </thead>
         <tbody>
         <?php
-// ตรวจสอบว่ามีข้อมูลใน $data['result_course'] หรือไม่
 if (isset($data['result_course']) && $data['result_course']->num_rows > 0) {
     // เริ่มวนลูปเพื่อแสดงข้อมูล
     while ($row = $data['result_course']->fetch_object()) {
     ?>
         <tr>
-            <!-- แสดงข้อมูลจากฐานข้อมูล -->
             <td><?= htmlspecialchars($row->course_code) ?></td>
             <td><?= htmlspecialchars($row->course_name) ?></td>
             <td><?= htmlspecialchars($row->instructor) ?></td>
             <td>
-            <a href="/register?course_id=<?= $row->course_code ?>" class="btn btn-warning btn-sm remove-course" onclick="return confirmSubmission()">ลงทะเบียน</a>
+            <a href="/register?course_id=<?= $row->course_id ?>" class="btn btn-warning btn-sm remove-course" onclick="return confirmSubmission()">ลงทะเบียน</a>
 
             </td>
         </tr>
     <?php
     }
 } else {
-    // ถ้าไม่มีข้อมูลให้แสดง
     ?>
     <tr><td colspan="5" class="text-center">ไม่พบรายวิชา</td></tr>
 <?php

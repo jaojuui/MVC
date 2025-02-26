@@ -23,7 +23,7 @@ function getCourseById($id):  mysqli_result|bool
     $stmt->bind_param('i',$id);
     $stmt->execute();
 
-    $result = $stmt->get_result(); // ดึงผลลัพธ์จาก execute
+    $result = $stmt->get_result();
     return $result;
 }function getCourse():  mysqli_result|bool
 {
@@ -32,7 +32,7 @@ function getCourseById($id):  mysqli_result|bool
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    $result = $stmt->get_result(); // ดึงผลลัพธ์จาก execute
+    $result = $stmt->get_result(); 
     return $result;
 }
 

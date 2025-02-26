@@ -14,7 +14,6 @@ $course = array('name' => $name, 'code' => $code, 'instructor' => $instructor);
 $res = insertCourse($course);
 
 if ($res) {
-    // Add a success message before rendering the view
     $_SESSION['message'] = 'Course added successfully!';
     renderView('course_new_get');
 } else {

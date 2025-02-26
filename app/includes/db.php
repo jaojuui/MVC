@@ -16,4 +16,4 @@ function getConnection():mysqli
 // define('DATABASE_DIR', __DIR__ . '/../database');
 require_once DATABASE_DIR . '/students.php';
 require_once DATABASE_DIR . '/courses.php';
-// 
+require_once DATABASE_DIR . '/enrollment.php';
